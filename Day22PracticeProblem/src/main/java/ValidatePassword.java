@@ -5,7 +5,7 @@ public class ValidatePassword {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.print("Enter a valid password (minimum 8 characters): ");
+            System.out.print("Enter a valid password (minimum 8 characters and at least 1 uppercase letter): ");
             String password = scanner.nextLine();
 
             if (isValidPassword(password)) {
@@ -21,6 +21,20 @@ public class ValidatePassword {
 
     public static boolean isValidPassword(String password) {
         // Check if the password has a minimum of 8 characters
-        return password.length() >= 8;
+        if (password.length() < 8) {
+            return false;
+        }
+
+        // Check if the password contains at least 1 uppercase letter
+        boolean hasUppercase = false;
+        for (char c : password.toCharArray()) {
+            if (Character.isUpperCase(c)) {
+                hasUppercase = true;
+                break;
+            }
+        }
+
+        return hasUppercase;
     }
 }
+
